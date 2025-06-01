@@ -1,21 +1,42 @@
 import React, { useRef, useState } from "react";
 
-const TaskAccordion = ({ singleTask }) => {
-  const { id, task, taskDescription } = singleTask;
+const TaskAccordion = ({ singleTask, deleteTodo, toggleCompleted }) => {
+  const { id, task, taskDescription, completed } = singleTask;
 
   const contentRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
+  //another way we can handle toggle and delete by passing these in function
+  //as we passed earlier to add task but this time not necessary as we need to
+  //pass id only so we can directly pass id also
+
+  // const handleCompleteToggle = (toggleId) => {
+  //   toggleCompleted(toggleId);
+  // };
+
+  // const deleteTask = (taskId) => {
+  //   deleteTodo(taskId);
+  // };
+
   return (
     <div className="border border-gray-600 p-4 rounded-md mb-4 bg-white">
-      <div
-        onClick={() => setIsOpen(!isOpen)}
-        className="bg-white cursor-pointer"
-      >
-        <div className="justify-between flex px-3">
-          <div>{task}</div>
-          <div>{isOpen ? "⬆️" : "⬇️"}</div>
+      <div className="bg-white cursor-pointer">
+        <div className="justify-between items-center flex px-3">
+          <span className={completed ? "line-through text-gray-500" : ""}>
+            {task}
+          </span>
+          <div className="flex">
+            <input
+              type="checkbox"
+              checked={completed}
+              onChange={() => toggleCompleted(id)}
+              className="mr-8"
+            />
+            <button onClick={() => setIsOpen(!isOpen)}>
+              {isOpen ? "⬆️" : "⬇️"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -34,6 +55,12 @@ const TaskAccordion = ({ singleTask }) => {
         }`}
       >
         <p>{taskDescription}</p>
+        <button
+          className="mt-4 bg-red-600 text-white px-3 py-1 rounded-md"
+          onClick={() => deleteTodo(id)}
+        >
+          Delete 🗑️
+        </button>
       </div>
     </div>
   );

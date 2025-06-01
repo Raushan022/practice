@@ -7,7 +7,7 @@ const FormTodo = ({ tasksHandler }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (!task.trim()) return;
+    if (!task.trim() || !taskDescription) return;
 
     const newTask = {
       id: Date.now(),
