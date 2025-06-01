@@ -1,19 +1,21 @@
 import React from "react";
+import TaskAccordion from "../components/TaskAccordion";
 
 const ListTodos = ({ allTasks }) => {
   return (
-    <div className=" my-8 border border-gray-600 w-3/4 mx-auto p-4 rounded-md">
+    <div className=" my-8 border border-gray-600 w-3/4 mx-auto p-4 rounded-md bg-fuchsia-200">
       <h1 className="font-bold text-2xl text-blue-800">Tasks List</h1>
 
       <div className="mt-4">
-        {allTasks.length !== 0 && (
+        {allTasks.length !== 0 ? (
           <>
             {allTasks.map((singleTask) => (
-              <div>
-                <p className="text-2xl">{singleTask.task}</p>
-                <p>{singleTask.taskDescription}</p>
-              </div>
+              <TaskAccordion key={singleTask.id} singleTask={singleTask} />
             ))}
+          </>
+        ) : (
+          <>
+            <p className="text-center text-4xl py-8">Task List is Empty</p>
           </>
         )}
       </div>
