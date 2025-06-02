@@ -28,15 +28,15 @@ const TaskAccordion = ({
   // };
 
   const saveEditedTask = (id) => {
-    // below code will not work as in parent component we defined function updateTodo which wants three parameters
-    // which are id, updatedTask, updatedDescription but here we are passing an object, hence we will pas 3 parameters
-    // const newEditedTask = {
-    //   id: id,
-    //   editedTask: editedTask,
-    //   editedDescription: editedDescription,
-    // };
+    const trimmedTask = editedTask.trim();
+    const trimmedDescription = editedDescription.trim();
 
-    updateTodo(id, editedTask, editedDescription);
+    if (!trimmedTask || !trimmedDescription) {
+      alert("Task and Description cannot be empty!");
+      return;
+    }
+
+    updateTodo(id, trimmedTask, trimmedDescription);
     setIsEditing(false);
   };
 
