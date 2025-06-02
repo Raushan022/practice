@@ -1,7 +1,7 @@
 import React from "react";
 import TaskAccordion from "../components/TaskAccordion";
 
-const ListTodos = ({ allTasks, deleteTodo, toggleCompleted }) => {
+const ListTodos = ({ allTasks, deleteTodo, toggleCompleted, updateTodo }) => {
   return (
     <div className=" my-8 border border-gray-600 w-3/4 mx-auto p-4 rounded-md bg-fuchsia-200">
       <h1 className="font-bold text-2xl text-blue-800">Tasks List</h1>
@@ -15,6 +15,7 @@ const ListTodos = ({ allTasks, deleteTodo, toggleCompleted }) => {
                 singleTask={singleTask}
                 deleteTodo={deleteTodo}
                 toggleCompleted={toggleCompleted}
+                updateTodo={updateTodo}
               />
             ))}
           </>

@@ -23,6 +23,16 @@ function App() {
     );
   };
 
+  const updateTodo = (id, updatedTask, updatedDescription) => {
+    setAllTasks((prev) =>
+      prev.map((task) =>
+        task.id === id
+          ? { ...task, task: updatedTask, taskDescription: updatedDescription }
+          : task
+      )
+    );
+  };
+
   return (
     <>
       <div className="mx-16">
@@ -35,6 +45,7 @@ function App() {
         allTasks={allTasks}
         deleteTodo={deleteTodo}
         toggleCompleted={toggleCompleted}
+        updateTodo={updateTodo}
       />
     </>
   );
